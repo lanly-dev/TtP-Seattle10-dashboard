@@ -28,7 +28,7 @@ export default {
         alert('WebSocket is supported by your Browser!')
 
         // Let us open a web socket
-        const ws = new WebSocket(`ws://${window.location.hostname}:8080`)
+        const ws = new WebSocket(`ws://${window.location.hostname}:3000`)
 
         ws.onopen = function() {
           // Web Socket is connected, send data using send()

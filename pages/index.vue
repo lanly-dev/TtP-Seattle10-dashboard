@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Logo from '~/components/Logo.vue'
 
 export default {
@@ -19,10 +20,10 @@ export default {
   },
   methods: {
     async press() {
-      const data = await this.$axios.$post('/api/helloworld', {
+      const data = await axios.post('/api/helloworld', {
         client: 'client data'
       })
-      console.log(data)
+      console.log(data.data)
     },
     wspress() {
       console.log(window.location.hostname)

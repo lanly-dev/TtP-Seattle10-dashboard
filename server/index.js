@@ -12,7 +12,6 @@ async function start() {
   const nuxt = new Nuxt(config)
 
   const { host, port } = nuxt.options.server
-
   // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt)
@@ -20,6 +19,18 @@ async function start() {
   } else {
     await nuxt.ready()
   }
+
+  const WebSocket = require('ws');
+  const wss = new WebSocket.Server({ port: 8080 });
+
+  wss.on('connection',function connection(ws) {
+    ws.on('message',function incoming(message) {
+      console.log('received: %s',message);
+      ws.send('something from server');
+    });
+
+
+  });
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

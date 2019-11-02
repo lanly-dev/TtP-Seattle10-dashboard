@@ -7,6 +7,7 @@
     h2.subtitle
       | My wicked Nuxt.js project
     button.btn.btn-primary(@click='press') Press
+    button.btn.btn-primary(@click='wspress') WSPress
 </template>
 
 <script>
@@ -20,6 +21,34 @@ export default {
     async press() {
       const data = await this.$axios.$post('/api/helloworld')
       console.log(data)
+    },
+    wspress() {
+      console.log(window.location.hostname)
+      if ('WebSocket' in window) {
+        alert('WebSocket is supported by your Browser!')
+
+        // Let us open a web socket
+        const ws = new WebSocket(`ws://${window.location.hostname}:8080`)
+
+        ws.onopen = function() {
+          // Web Socket is connected, send data using send()
+          ws.send('Message to send')
+          alert('Message is sent...')
+        }
+
+        ws.onmessage = function(evt) {
+          console.log(evt)
+          alert('Message is received...')
+        }
+
+        ws.onclose = function() {
+          // websocket is closed.
+          alert('Connection is closed...')
+        }
+      } else {
+        // The browser doesn't support WebSocket
+        alert('WebSocket NOT supported by your Browser!')
+      }
     }
   }
 }

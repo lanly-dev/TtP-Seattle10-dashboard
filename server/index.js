@@ -1,8 +1,10 @@
 const express = require('express')
 const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
+const { Nuxt,Builder } = require('nuxt')
 const app = express()
 const http = require('http')
+const bodyParser = require('body-parser')
+
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -12,7 +14,7 @@ async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host, port } = nuxt.options.server
+  const { host,port } = nuxt.options.server
   // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt)
@@ -21,20 +23,24 @@ async function start() {
     await nuxt.ready()
   }
 
-  const WebSocket = require('ws');
+  const WebSocket = require('ws')
+  app.use(bodyParser.json());       // to support JSON-encoded bodies
+  app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  }));
   app.use(nuxt.render)
   const server = http.createServer(app)
-  const wss = new WebSocket.Server({ server: server });
+  wss = new WebSocket.Server({ server })
 
   wss.on('connection',function connection(ws) {
     ws.on('message',function incoming(message) {
-      console.log('received: %s',message);
-      ws.send('something from server');
-    });
-  });
+      console.log('received: %s',message)
+      ws.send('something from server')
+    })
+  })
 
   // Listen the server
-  server.listen(port, host)
+  server.listen(port,host)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true

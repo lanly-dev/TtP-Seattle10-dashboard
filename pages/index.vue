@@ -19,7 +19,9 @@ export default {
   },
   methods: {
     async press() {
-      const data = await this.$axios.$post('/api/helloworld')
+      const data = await this.$axios.$post('/api/helloworld', {
+        client: 'client data'
+      })
       console.log(data)
     },
     wspress() {

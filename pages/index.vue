@@ -2,15 +2,11 @@
   .container
     div
       logo
-        h1.title
-          | TtP-Seattle10-dashboard
-        h2.subtitle
-          | My wicked Nuxt.js project
-        .links
-          a.button--green(href='https://nuxtjs.org/' target='_blank')
-            | Documentation
-          a.button--grey(href='https://github.com/nuxt/nuxt.js' target='_blank')
-            | GitHub
+    h1.title
+      | TtP-Seattle10-dashboard
+    h2.subtitle
+      | My wicked Nuxt.js project
+    button.btn.btn-primary(@click='press') Press
 </template>
 
 <script>
@@ -19,6 +15,11 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  methods: {
+    press() {
+      console.log('press')
+    }
   }
 }
 </script>

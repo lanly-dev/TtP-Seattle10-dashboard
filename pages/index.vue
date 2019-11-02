@@ -17,8 +17,9 @@ export default {
     Logo
   },
   methods: {
-    press() {
-      console.log('press')
+    async press() {
+      const data = await this.$axios.$post('/api/helloworld')
+      console.log(data)
     }
   }
 }

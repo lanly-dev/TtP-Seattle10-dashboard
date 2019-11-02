@@ -3,7 +3,8 @@ const express = require('express')
 // Create express instnace
 const app = express()
 
-app.post('/helloworld',  (req, res, next) => {
+app.use('/helloworld',  (req, res, next) => {
+  console.log('working')
   res.json({hello: 'world'})
 })
 

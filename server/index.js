@@ -2,6 +2,7 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
+const http = require('http')
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -21,22 +22,19 @@ async function start() {
   }
 
   const WebSocket = require('ws');
-  const wss = new WebSocket.Server({ port: 3000 });
+  app.use(nuxt.render)
+  const server = http.createServer(app)
+  const wss = new WebSocket.Server({ server: server });
 
   wss.on('connection',function connection(ws) {
     ws.on('message',function incoming(message) {
       console.log('received: %s',message);
       ws.send('something from server');
     });
-
-
   });
 
-  // Give nuxt middleware to express
-  app.use(nuxt.render)
-
   // Listen the server
-  app.listen(port, host)
+  server.listen(port, host)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true

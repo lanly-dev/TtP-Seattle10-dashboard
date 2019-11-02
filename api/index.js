@@ -3,11 +3,17 @@ const express = require('express')
 // Create express instnace
 const app = express()
 
-app.use('/helloworld', (req, res, next) => {
+app.post('/helloworld', (req, res, next) => {
   console.log('working')
+  console.log(req)
   res.json({ hello: 'world' })
 })
 
+app.post('/data', (req, res, next) => {
+  console.log('recieve')
+  ws.send('send data from server')
+  res.sendStatus(200)
+})
 // Export the server middleware
 module.exports = {
   path: '/api',

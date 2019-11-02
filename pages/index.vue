@@ -19,7 +19,9 @@ export default {
   },
   methods: {
     async press() {
-      const data = await this.$axios.$post('/api/helloworld')
+      const data = await this.$axios.$post('/api/helloworld', {
+        client: 'client data'
+      })
       console.log(data)
     },
     wspress() {
@@ -31,6 +33,7 @@ export default {
         const ws = new WebSocket(`ws://${window.location.hostname}:3000`)
 
         ws.onopen = function() {
+          console.log('open')
           // Web Socket is connected, send data using send()
           ws.send('Message to send')
           alert('Message is sent...')

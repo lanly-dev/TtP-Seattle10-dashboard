@@ -23,15 +23,19 @@ export default {
     return {
       script: [
         {
-          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`,
-          defer: true
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`
         }
       ]
     }
   },
   mounted() {
+    console.log('mounted')
+    window.addEventListener('error', function(event) {
+      console.log('err', event)
+    })
     // eslint-disable-next-line
-    function initMap() {
+    const initMap = () => {
+      console.log('??')
       const uluru = { lat: -25.344, lng: 131.036 }
       // eslint-disable-next-line
       const map = new google.maps.Map(document.getElementById('map'), {

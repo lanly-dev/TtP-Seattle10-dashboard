@@ -7,7 +7,7 @@
     button.btn.btn-primary(@click='press') Press
     button.btn.btn-primary(@click='wspress') WSPress
     .row
-      .col-3
+      .col-3.sidebar
       .col-9: #map
 </template>
 
@@ -127,7 +127,13 @@ export default {
 }
 
 #map {
-  height: 400px; /* The height is 400 pixels */
-  width: 100%; /* The width is the width of the web page */
+  height: 400px;
+  width: 100%;
+  background-color: red;
 }
+
+.sidebar {
+  background-color: blue;
+}
+
 </style>

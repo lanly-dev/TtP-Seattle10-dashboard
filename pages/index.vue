@@ -1,5 +1,5 @@
 <template lang="pug">
-  script(async defer src='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap')
+  script(async defer src=`https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`)
   .container
     div
       logo

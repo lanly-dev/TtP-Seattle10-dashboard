@@ -1,13 +1,13 @@
 <template lang="pug">
+  script(async defer src='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap')
   .container
     div
       logo
-    h1.title
-      | TtP-Seattle10-dashboard
-    h2.subtitle
-      | My wicked Nuxt.js project
-    button.btn.btn-primary(@click='press') Press
-    button.btn.btn-primary(@click='wspress') WSPress
+    h1.title TtP-Seattle10-dashboard
+    h2.subtitle My wicked Nuxt.js project
+    row
+      col-3
+      col-9: #map
 </template>
 
 <script>
@@ -17,6 +17,17 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  mounted: {
+    initMap() {
+      var uluru = { lat: -25.344, lng: 131.036 }
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+      })
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({ position: uluru, map: map })
+    }
   },
   methods: {
     async press() {
@@ -89,5 +100,10 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+#map {
+  height: 400px; /* The height is 400 pixels */
+  width: 100%; /* The width is the width of the web page */
 }
 </style>

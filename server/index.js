@@ -29,7 +29,6 @@ async function start() {
   app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
   }));
-  app.use(nuxt.render)
   const server = http.createServer(app)
   const wss = new WebSocket.Server({ server })
 
@@ -40,6 +39,8 @@ async function start() {
       ws.send('something from server')
     })
   })
+
+  app.use(nuxt.render)
 
   // Listen the server
   server.listen(port)

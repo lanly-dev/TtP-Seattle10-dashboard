@@ -30,7 +30,8 @@ async function start() {
     extended: true
   }));
   const server = http.createServer(app)
-  global.WSS = wss = new WebSocket.Server({ server })
+  const wss = new WebSocket.Server({ server })
+  global.WSS = wss
 
   wss.on('connection',function connection(ws) {
     ws.on('message',function incoming(message) {

@@ -4,7 +4,7 @@ const { Nuxt,Builder } = require('nuxt')
 const app = express()
 const http = require('http')
 const bodyParser = require('body-parser')
-global.WS
+global.WSS
 
 
 // Import and Set Nuxt.js options
@@ -30,10 +30,9 @@ async function start() {
     extended: true
   }));
   const server = http.createServer(app)
-  const wss = new WebSocket.Server({ server })
+  global.WSS = wss = new WebSocket.Server({ server })
 
   wss.on('connection',function connection(ws) {
-    global.WS = ws
     ws.on('message',function incoming(message) {
       console.log('received: %s',message)
       ws.send('something from server')

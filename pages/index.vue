@@ -135,5 +135,4 @@ export default {
 .sidebar {
   background-color: blue;
 }
-
 </style>

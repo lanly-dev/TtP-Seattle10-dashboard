@@ -1,6 +1,6 @@
 const express = require('express')
 const consola = require('consola')
-const { Nuxt,Builder } = require('nuxt')
+const { Nuxt, Builder } = require('nuxt')
 const app = express()
 const http = require('http')
 const bodyParser = require('body-parser')
@@ -14,7 +14,8 @@ async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host,port } = nuxt.options.server
+  const { host, port } = nuxt.options.server
+
   // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt)
@@ -23,10 +24,12 @@ async function start() {
     await nuxt.ready()
   }
 
-  app.use(bodyParser.json());       // to support JSON-encoded bodies
-  app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-  }));
+  app.use(bodyParser.json())
+  app.use(
+    bodyParser.urlencoded({
+      extended: true
+    })
+  )
   const server = http.createServer(app)
   WS(server)
 

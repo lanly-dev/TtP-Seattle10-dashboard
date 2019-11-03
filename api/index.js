@@ -13,7 +13,7 @@ app.post('/data',(req,res,next) => {
   console.log('recieve')
   global.WSS.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
-      client.send(data);
+      client.send(req.body);
     }
   });
   res.sendStatus(200)

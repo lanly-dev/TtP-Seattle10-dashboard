@@ -11,7 +11,7 @@ app.post('/helloworld', (req, res, next) => {
 
 app.post('/data', (req, res, next) => {
   console.log('recieve')
-  ws.send('send data from server')
+  global.WS.send('send data from server')
   res.sendStatus(200)
 })
 // Export the server middleware

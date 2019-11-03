@@ -19,25 +19,17 @@ export default {
   components: {
     Logo
   },
+  head() {
+    return {
+      script: [
+        {
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`,
+          defer: true
+        }
+      ]
+    }
+  },
   mounted() {
-    if (window.google && window.google.maps) {
-      this.create_map()
-      return
-    }
-    const self = this
-    const script = document.createElement('script')
-    script.onload = function() {
-      if (!window.google && !window.google.maps)
-        return void console.error('no google maps script included')
-
-      self.create_map()
-    }
-
-    script.async = true
-    script.defer = true
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`
-    document.getElementsByTagName('head')[0].appendChild(script)
-
     // eslint-disable-next-line
     function initMap() {
       const uluru = { lat: -25.344, lng: 131.036 }
@@ -98,7 +90,7 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -135,5 +127,4 @@ export default {
 .sidebar {
   background-color: blue;
 }
-
 </style>

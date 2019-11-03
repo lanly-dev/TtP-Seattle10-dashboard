@@ -28,14 +28,16 @@ export default {
       ]
     }
   },
-  mounted: {
-    initMap() {
+  mounted() {
+    // eslint-disable-next-line
+    function initMap() {
       const uluru = { lat: -25.344, lng: 131.036 }
       // eslint-disable-next-line
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: uluru
       })
+      console.log(document.getElementById('map'))
       // The marker, positioned at Uluru
       // eslint-disable-next-line
       const marker = new google.maps.Marker({ position: uluru, map })

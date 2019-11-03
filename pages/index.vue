@@ -1,13 +1,14 @@
 <template lang="pug">
-  script(async defer src=`https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`)
   .container
     div
       logo
     h1.title TtP-Seattle10-dashboard
     h2.subtitle My wicked Nuxt.js project
-    row
-      col-3
-      col-9: #map
+    button.btn.btn-primary(@click='press') Press
+    button.btn.btn-primary(@click='wspress') WSPress
+    .row
+      .col-3
+      .col-9: #map
 </template>
 
 <script>
@@ -18,19 +19,31 @@ export default {
   components: {
     Logo
   },
+  head() {
+    return {
+      script: [
+        {
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`
+        }
+      ]
+    }
+  },
   mounted: {
     initMap() {
-      var uluru = { lat: -25.344, lng: 131.036 }
-      var map = new google.maps.Map(document.getElementById('map'), {
+      const uluru = { lat: -25.344, lng: 131.036 }
+      // eslint-disable-next-line
+      const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: uluru
       })
       // The marker, positioned at Uluru
-      var marker = new google.maps.Marker({ position: uluru, map: map })
+      // eslint-disable-next-line
+      const marker = new google.maps.Marker({ position: uluru, map })
     }
   },
   methods: {
     async press() {
+      console.log(process.env.GKey)
       const data = await axios.post('/api/helloworld', {
         client: 'client data'
       })

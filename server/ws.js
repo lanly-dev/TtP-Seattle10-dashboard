@@ -1,5 +1,5 @@
-var WebSocket = require('ws')
-var broadcast
+const WebSocket = require('ws')
+let broadcast
 
 function WS(server) {
   const wss = new WebSocket.Server({ server })

@@ -11,6 +11,7 @@ app.post('/helloworld',(req,res,next) => {
 
 app.post('/data',(req,res,next) => {
   console.log('recieve')
+  console.log(global.WSS.clients)
   global.WSS.clients.forEach(function each(client) {
     console.log(client)
     if (client.readyState === WebSocket.OPEN) {

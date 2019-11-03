@@ -38,6 +38,10 @@ async function start() {
       console.log('received: %s',message)
       ws.send('something from server')
     })
+
+    ws.on("request",function (req) {
+      console.log(req.body)
+    });
   })
 
   app.use(nuxt.render)

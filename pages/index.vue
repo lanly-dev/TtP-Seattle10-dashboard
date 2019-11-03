@@ -28,7 +28,7 @@ export default {
     wspress() {
       console.log(window.location.hostname)
       if ('WebSocket' in window) {
-        alert('WebSocket is supported by your Browser!')
+        console.log('WebSocket is supported by your Browser!')
 
         // Let us open a web socket
         const ws = new WebSocket(`wss://${window.location.hostname}`)
@@ -37,17 +37,18 @@ export default {
           console.log('open')
           // Web Socket is connected, send data using send()
           ws.send('Message to send')
-          alert('Message is sent...')
+          console.log('Message is sent...')
         }
 
         ws.onmessage = function(evt) {
           console.log(evt)
-          alert('Message is received...')
+          console.log('$$$$$$$$$')
         }
 
         ws.onclose = function() {
           // websocket is closed.
-          alert('Connection is closed...')
+          // alert('Connection is closed...')
+          console.log('closed')
         }
       } else {
         // The browser doesn't support WebSocket

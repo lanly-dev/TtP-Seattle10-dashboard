@@ -41,7 +41,7 @@ export default {
         }
 
         ws.onmessage = function(evt) {
-          console.log(evt)
+          console.log(evt.data)
           console.log('$$$$$$$$$')
         }
 

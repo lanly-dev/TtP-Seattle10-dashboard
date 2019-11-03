@@ -12,6 +12,7 @@ app.post('/helloworld',(req,res,next) => {
 app.post('/data',(req,res,next) => {
   console.log('recieve')
   global.WSS.clients.forEach(function each(client) {
+    console.log(client)
     if (client.readyState === WebSocket.OPEN) {
       client.send(req.body);
     }

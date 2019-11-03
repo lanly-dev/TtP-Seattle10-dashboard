@@ -5,10 +5,8 @@
   "author": "Seattle10",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server --watch api",
+    "start": "cross-env NODE_ENV=development nodemon server/index.js --watch server --watch api",
     "build": "nuxt build",
-    "prestart": "npm ci && npm run build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint-fix": "eslint --ext .js,.vue --ignore-path .gitignore --fix ."

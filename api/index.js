@@ -1,4 +1,5 @@
 const express = require('express')
+const WS = require('../server/ws')
 
 // Create express instnace
 const app = express()
@@ -9,17 +10,7 @@ app.post('/helloworld',(req,res,next) => {
   res.json({ hello: 'world' })
 })
 
-app.post('/data',(req,res,next) => {
-  console.log('recieve')
-  console.log(global.WSS.clients)
-  global.WSS.clients.forEach(function each(client) {
-    console.log(client)
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(req.body);
-    }
-  });
-  res.sendStatus(200)
-})
+app.post('/data', WS.route)
 // Export the server middleware
 module.exports = {
   path: '/api',

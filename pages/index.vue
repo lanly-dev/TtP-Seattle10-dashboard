@@ -7,6 +7,7 @@
       .col-1.sidebar1: list-t
       .col-10.border.p-0: g-map
       .col-1.sidebar2: list-r
+    //- for testing REST API and Websocket
     button.btn.btn-primary(@click='press') Press
     button.btn.btn-primary(@click='wspress') WSPress
 </template>
@@ -32,11 +33,17 @@ export default {
     },
     wspress() {
       console.log(window.location.hostname)
+      let wssAdress
+
+      if (window.location.hostname === 'localhost')
+        wssAdress = `ws://${window.location.hostname}:3000`
+      else wssAdress = `wss://${window.location.hostname}`
+
       if ('WebSocket' in window) {
         console.log('WebSocket is supported by your Browser!')
 
         // Let us open a web socket
-        const ws = new WebSocket(`wss://${window.location.hostname}`)
+        const ws = new WebSocket(wssAdress)
 
         ws.onopen = function() {
           console.log('open')

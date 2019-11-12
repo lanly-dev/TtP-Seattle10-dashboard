@@ -16,7 +16,7 @@ async function start() {
 
   const { host, port } = nuxt.options.server
 
-  // Build only in dev mode
+  // Build only in glitch and local mode
   if (config.dev) {
     const builder = new Builder(nuxt)
     await builder.build()

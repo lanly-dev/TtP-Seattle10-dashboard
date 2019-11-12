@@ -8,7 +8,8 @@
     button.btn.btn-primary(@click='wspress') WSPress
     .row
       .col-3.sidebar
-      .col-9: #map
+      .col-9
+        GmapMap(:center="{lat:10, lng:10}" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px")
 </template>
 
 <script>
@@ -18,35 +19,6 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GKey}&callback=initMap`
-        }
-      ]
-    }
-  },
-  mounted() {
-    console.log('mounted')
-    window.addEventListener('error', function(event) {
-      console.log('err', event)
-    })
-    // eslint-disable-next-line
-    const initMap = () => {
-      console.log('??')
-      const uluru = { lat: -25.344, lng: 131.036 }
-      // eslint-disable-next-line
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
-      })
-      console.log(document.getElementById('map'))
-      // The marker, positioned at Uluru
-      // eslint-disable-next-line
-      const marker = new google.maps.Marker({ position: uluru, map })
-    }
   },
   methods: {
     async press() {

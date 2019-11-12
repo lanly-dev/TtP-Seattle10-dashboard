@@ -5,7 +5,8 @@
   "author": "Seattle10",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon server/index.js --watch server --watch api",
+    "start": "cross-env NODE_ENV=glitch nodemon server/index.js --watch server --watch api",
+    "dev": "cross-env NODE_ENV=local nodemon server/index.js --watch server --watch api",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -19,9 +20,11 @@
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "nuxt": "^2.10.2",
+    "vue2-google-maps": "^0.10.7",
     "ws": "^7.2.0"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^1.1.2",
     "@nuxtjs/eslint-module": "^1.1.0",
     "babel-eslint": "^10.0.3",

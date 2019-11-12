@@ -1,3 +1,5 @@
+if (process.env.NODE_ENV === 'local') require('dotenv').config()
+
 module.exports = {
   mode: 'universal',
   /*
@@ -27,7 +29,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/gmaps', ssr: true }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -61,5 +63,8 @@ module.exports = {
   serverMiddleware: ['~/api/index.js'],
   env: {
     GKey: process.env.GOOGLE_MAP_API_KEY
+  },
+  build: {
+    transpile: [/^vue2-google-maps($|\/)/]
   }
 }

@@ -93,11 +93,6 @@ export default {
   padding-top: 15px;
 }
 
-#map {
-  height: 400px;
-  width: 100%;
-}
-
 .sidebar {
   background-color: lightblue;
 }

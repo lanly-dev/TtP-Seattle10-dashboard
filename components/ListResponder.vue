@@ -8,7 +8,12 @@
 export default {
   data() {
     return {
-      items: [{ message: 'hello' }, { message: 'world' }]
+      items: [
+        { color: 'green', gender: 'male' },
+        { color: 'yellow', gender: 'female' },
+        { color: 'red', gender: 'female' },
+        { color: 'black', gender: 'male' }
+      ]
     }
   },
   methods: {

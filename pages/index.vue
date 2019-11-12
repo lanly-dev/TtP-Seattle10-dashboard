@@ -1,22 +1,26 @@
 <template lang="pug">
   .container-fluid
-    h1.title TtP-Seattle10-dashboard
+    h4 TtP-Seattle10-dashboard
+    //- h1.title TtP-Seattle10-dashboard
     //- h2.subtitle dashboard
     .row
-      .col-3.sidebar: List
-      .col-9: Map
+      .col-1.sidebar1: list-t
+      .col-10: g-map
+      .col-1.sidebar2: list-r
     button.btn.btn-primary(@click='press') Press
     button.btn.btn-primary(@click='wspress') WSPress
 </template>
 
 <script>
 import axios from 'axios'
-import List from '~/components/List.vue'
-import Map from '~/components/Map.vue'
+import ListT from '~/components/ListTarget'
+import ListR from '~/components/ListResponder'
+import GMap from '~/components/Map'
 export default {
   components: {
-    List,
-    Map
+    ListT,
+    ListR,
+    GMap
   },
   methods: {
     async press() {
@@ -93,7 +97,11 @@ export default {
   padding-top: 15px;
 }
 
-.sidebar {
+.sidebar1 {
   background-color: lightblue;
+}
+
+.sidebar2 {
+  background-color: lightgreen;
 }
 </style>

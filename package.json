@@ -5,6 +5,7 @@
   "author": "Seattle10",
   "private": true,
   "scripts": {
+    "prestart": "npm ci",
     "start": "cross-env NODE_ENV=glitch nodemon server/index.js --watch server --watch api",
     "dev": "cross-env NODE_ENV=local nodemon server/index.js --watch server --watch api",
     "build": "nuxt build",

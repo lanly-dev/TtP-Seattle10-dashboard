@@ -17,7 +17,7 @@ $ npm run start
 # refresh Glitch
 $ refresh
 
-# delte node_modules and reinstall dependencies
+# delete node_modules and reinstall dependencies
 $ npm ci
 
 # before pull from Github
@@ -25,3 +25,4 @@ $ git reset --hard origin/master
 
 ```
 ## https://seattle10-dashboard.glitch.me/
+## https://github.com/lanly-dev/TtP-Seattle10-dashboard

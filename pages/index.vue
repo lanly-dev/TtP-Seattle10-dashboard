@@ -3,9 +3,9 @@
     h4 TtP-Seattle10-dashboard
     //- h1.title TtP-Seattle10-dashboard
     //- h2.subtitle dashboard
-    .row
+    .row.bg-light.border
       .col-1.sidebar1: list-t
-      .col-10: g-map
+      .col-10.border.p-0: g-map
       .col-1.sidebar2: list-r
     button.btn.btn-primary(@click='press') Press
     button.btn.btn-primary(@click='wspress') WSPress

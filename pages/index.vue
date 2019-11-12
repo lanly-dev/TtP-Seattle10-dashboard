@@ -3,17 +3,21 @@
     h1.title TtP-Seattle10-dashboard
     //- h2.subtitle dashboard
     .row
-      .col-3.sidebar
-      .col-9: GmapMap#map(:center='{lat:10, lng:10}' :zoom='7' map-type-id='terrain')
+      .col-3.sidebar: List
+      .col-9: Map
     button.btn.btn-primary(@click='press') Press
     button.btn.btn-primary(@click='wspress') WSPress
 </template>
 
 <script>
 import axios from 'axios'
-
+import List from '~/components/List.vue'
+import Map from '~/components/Map.vue'
 export default {
-  components: {},
+  components: {
+    List,
+    Map
+  },
   methods: {
     async press() {
       console.log(process.env.GKey)

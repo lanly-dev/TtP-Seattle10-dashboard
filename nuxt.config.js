@@ -58,13 +58,11 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    transpile: [/^vue2-google-maps($|\/)/]
   },
   serverMiddleware: ['~/api/index.js'],
   env: {
     GKey: process.env.GOOGLE_MAP_API_KEY
-  },
-  build: {
-    transpile: [/^vue2-google-maps($|\/)/]
   }
 }

@@ -1,25 +1,19 @@
 <template lang="pug">
-  .container
-    div
-      logo
+  .container-fluid
     h1.title TtP-Seattle10-dashboard
-    h2.subtitle My wicked Nuxt.js project
-    button.btn.btn-primary(@click='press') Press
-    button.btn.btn-primary(@click='wspress') WSPress
+    //- h2.subtitle dashboard
     .row
       .col-3.sidebar
-      .col-9
-        GmapMap(:center="{lat:10, lng:10}" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px")
+      .col-9: GmapMap#map(:center='{lat:10, lng:10}' :zoom='7' map-type-id='terrain')
+    button.btn.btn-primary(@click='press') Press
+    button.btn.btn-primary(@click='wspress') WSPress
 </template>
 
 <script>
 import axios from 'axios'
-import Logo from '~/components/Logo.vue'
 
 export default {
-  components: {
-    Logo
-  },
+  components: {},
   methods: {
     async press() {
       console.log(process.env.GKey)
@@ -63,7 +57,8 @@ export default {
 </script>
 
 <style>
-.container {
+.container-fluid {
+  padding: 2em;
   margin: 0 auto;
   min-height: 100vh;
   display: block;
@@ -97,10 +92,9 @@ export default {
 #map {
   height: 400px;
   width: 100%;
-  background-color: red;
 }
 
 .sidebar {
-  background-color: blue;
+  background-color: lightblue;
 }
 </style>

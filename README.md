@@ -9,6 +9,19 @@
 $ npm run install
 
 # build for production and launch server
-$ npm run build
 $ npm run start
 ```
+
+## Useful commands when making this app work on Glitch
+``` bash
+# refresh Glitch
+$ refresh
+
+# delte node_modules and reinstall dependencies
+$ npm ci
+
+# before pull from Github
+$ git reset --hard origin/master
+
+```
+## https://seattle10-dashboard.glitch.me/

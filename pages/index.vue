@@ -8,8 +8,8 @@
       .col-10.border.p-0: g-map
       .col-1.sidebar2: list-r
     //- for testing REST API and Websocket
-    button.btn.btn-primary(@click='press') Press
-    button.btn.btn-primary(@click='wspress') WSPress
+    //- button.btn.btn-primary(@click='press') Press
+    //- button.btn.btn-primary(@click='wspress') WSPress
 </template>
 
 <script>
@@ -25,14 +25,12 @@ export default {
   },
   methods: {
     async press() {
-      console.log(process.env.GKey)
       const data = await axios.post('/api/helloworld', {
         client: 'client data'
       })
       console.log(data.data)
     },
     wspress() {
-      console.log(window.location.hostname)
       let wssAdress
 
       if (window.location.hostname === 'localhost')
@@ -42,24 +40,23 @@ export default {
       if ('WebSocket' in window) {
         console.log('WebSocket is supported by your Browser!')
 
-        // Let us open a web socket
         const ws = new WebSocket(wssAdress)
 
-        ws.onopen = function() {
+        ws.onopen = () => {
           console.log('open')
           // Web Socket is connected, send data using send()
           ws.send('Message to send')
           console.log('Message is sent...')
         }
 
-        ws.onmessage = function(evt) {
+        ws.onmessage = (evt) => {
+          console.log('$$$$$$$$$')
           console.log(evt.data)
           console.log('$$$$$$$$$')
         }
 
-        ws.onclose = function() {
+        ws.onclose = () => {
           // websocket is closed.
-          // alert('Connection is closed...')
           console.log('closed')
         }
       } else {

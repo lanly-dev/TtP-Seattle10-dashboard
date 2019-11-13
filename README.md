@@ -25,4 +25,5 @@ $ git reset --hard origin/master
 
 ```
 ## https://seattle10-dashboard.glitch.me/
+## https://glitch.com/@seattle-10
 ## https://github.com/lanly-dev/TtP-Seattle10-dashboard

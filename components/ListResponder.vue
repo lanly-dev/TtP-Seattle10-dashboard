@@ -1,6 +1,6 @@
 <template lang="pug">
   span
-    .row(v-for='team in responders')
+    .row.text-left(v-for='team in responders')
       .col-3 {{team.id}}
       .col-9: small {{ team.name }} ETA-{{team.eta}}
 </template>

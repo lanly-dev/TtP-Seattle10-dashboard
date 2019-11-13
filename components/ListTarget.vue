@@ -1,8 +1,7 @@
 <template lang="pug">
   span
-    .row(v-for='target in targets')
-      .col-3(:style='tagColor(target.color)')
-        span {{target.id}}
+    .row.text-left(v-for='target in targets')
+      .col-3(:style='tagColor(target.color)'): span {{target.id}}
       .col-9 {{ target.gender }}
 </template>
 <script>

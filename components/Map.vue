@@ -1,16 +1,17 @@
 <template lang="pug">
   gmap-map#map(:center='mapCenter' :zoom=7 map-type-id='terrain')
     gmap-marker(:key='index' v-for='(m, index) in markers' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
+    gmap-marker(:key='index' v-for='(m, index) in targets' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
+    gmap-marker(:key='index' v-for='(m, index) in emsTeams' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
     gmap-info-window(:options='{maxWidth: 300}' :position='infoWindow.position' :opened='infoWindow.open' @closeclick='infoWindow.open=false')
       div
         p helloworld popup
         p the 2nd line
         p the 3rd line
-
 </template>
 <script>
 export default {
-  props: ['mapCenter'],
+  props: ['mapCenter', 'targets', 'emsTeams'],
   data() {
     return {
       markers: [

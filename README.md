@@ -12,7 +12,7 @@ $ npm run install
 $ npm run start
 ```
 
-## Useful commands when making this app work on Glitch
+## Useful commands when making this app to work on Glitch
 ``` bash
 # refresh Glitch
 $ refresh
@@ -23,6 +23,8 @@ $ npm ci
 # before pull from Github
 $ git reset --hard origin/master
 
+# eslint fix
+$ npm run lint-fix
 ```
 ## https://seattle10-dashboard.glitch.me/
 ## https://glitch.com/@seattle-10

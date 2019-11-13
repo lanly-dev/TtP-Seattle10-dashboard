@@ -5,7 +5,7 @@
     //- h2.subtitle dashboard
     .row.bg-light.border
       .col-1.sidebar1: list-t(:targets='targets')
-      .col-10.border.p-0: g-map(:mapCenter='mapCenter')
+      .col-10.border.p-0: g-map(:mapCenter='mapCenter' :targets='targets' :emsTeams='emsTeams')
       .col-1.sidebar2: list-e(:emsTeams='emsTeams')
     //- for testing REST API and Websocket
     //- button.btn.btn-primary(@click='press') Press
@@ -27,36 +27,16 @@ export default {
     return {
       mapCenter: { lat: 10, lng: 10 },
       targets: [
-        {
-          id: 1,
-          tag: 'green',
-          gender: 'male',
-          position: { lat: 11, lng: 11 }
-        },
-        {
-          id: 2,
-          tag: 'yellow',
-          gender: 'female',
-          position: { lat: 11, lng: 11 }
-        },
-        {
-          id: 3,
-          tag: 'red',
-          gender: 'female',
-          position: { lat: 11, lng: 11 }
-        },
-        {
-          id: 4,
-          tag: 'black',
-          gender: 'male',
-          position: { lat: 11, lng: 11 }
-        }
+        { id: 1, tag: 'green', gender: 'male', position: { lat: 10, lng: 11 } },
+        { id: 2, tag: 'yellow', gender: 'female', position: { lat: 9, lng: 11 } }, // eslint-disable-line
+        { id: 3, tag: 'red', gender: 'female', position: { lat: 8, lng: 11 } },
+        { id: 4, tag: 'black', gender: 'male', position: { lat: 12, lng: 11 } }
       ],
       emsTeams: [
-        { id: 1, name: 'team1', eta: 10 },
-        { id: 2, name: 'team2', eta: 20 },
-        { id: 3, name: 'team3', eta: 5 },
-        { id: 4, name: 'team4', eta: 0 }
+        { id: 1, name: 'team1', position: { lat: 11, lng: 7 }, eta: 10 },
+        { id: 2, name: 'team2', position: { lat: 11, lng: 8 }, eta: 20 },
+        { id: 3, name: 'team3', position: { lat: 11, lng: 12 }, eta: 5 },
+        { id: 4, name: 'team4', position: { lat: 11, lng: 13 }, eta: 0 }
       ]
     }
   },

@@ -10,13 +10,13 @@
 </template>
 <script>
 export default {
+  props: ['mapCenter'],
   data() {
     return {
       markers: [
         { position: { lat: 11, lng: 11 } },
         { position: { lat: 13, lng: 12 } }
       ],
-      mapCenter: { lat: 10, lng: 10 },
       infoWindow: {
         position: {},
         open: false

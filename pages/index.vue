@@ -4,9 +4,9 @@
     //- h1.title TtP-Seattle10-dashboard
     //- h2.subtitle dashboard
     .row.bg-light.border
-      .col-1.sidebar1: list-t
-      .col-10.border.p-0: g-map
-      .col-1.sidebar2: list-r
+      .col-1.sidebar1: list-t(:targets='targets')
+      .col-10.border.p-0: g-map(:mapCenter='mapCenter')
+      .col-1.sidebar2: list-e(:emsTeams='emsTeams')
     //- for testing REST API and Websocket
     //- button.btn.btn-primary(@click='press') Press
     //- button.btn.btn-primary(@click='wspress') WSPress
@@ -15,22 +15,61 @@
 <script>
 import axios from 'axios'
 import ListT from '~/components/ListTarget'
-import ListR from '~/components/ListResponder'
+import ListE from '~/components/ListEms'
 import GMap from '~/components/Map'
 export default {
   components: {
     ListT,
-    ListR,
+    ListE,
     GMap
+  },
+  data() {
+    return {
+      mapCenter: { lat: 10, lng: 10 },
+      targets: [
+        {
+          id: 1,
+          tag: 'green',
+          gender: 'male',
+          position: { lat: 11, lng: 11 }
+        },
+        {
+          id: 2,
+          tag: 'yellow',
+          gender: 'female',
+          position: { lat: 11, lng: 11 }
+        },
+        {
+          id: 3,
+          tag: 'red',
+          gender: 'female',
+          position: { lat: 11, lng: 11 }
+        },
+        {
+          id: 4,
+          tag: 'black',
+          gender: 'male',
+          position: { lat: 11, lng: 11 }
+        }
+      ],
+      emsTeams: [
+        { id: 1, name: 'team1', eta: 10 },
+        { id: 2, name: 'team2', eta: 20 },
+        { id: 3, name: 'team3', eta: 5 },
+        { id: 4, name: 'team4', eta: 0 }
+      ]
+    }
   },
   methods: {
     async press() {
+      // button post
       const data = await axios.post('/api/helloworld', {
         client: 'client data'
       })
       console.log(data.data)
     },
     wspress() {
+      // button websocket
       let wssAdress
 
       if (window.location.hostname === 'localhost')

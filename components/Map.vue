@@ -4,9 +4,9 @@
     gmap-marker(:key='`b-${index}`' v-for='(m, index) in emsTeams' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
     gmap-info-window(:options='{maxWidth: 300}' :position='infoWindow.position' :opened='infoWindow.open' @closeclick='infoWindow.open=false')
       div
-        p helloworld popup
-        p the 2nd line
-        p the 3rd line
+        p {{infoWindow.id}}
+        p {{infoWindow.gender}}
+        p {{infoWindow.name}}
 </template>
 <script>
 export default {
@@ -14,8 +14,13 @@ export default {
   data() {
     return {
       infoWindow: {
+        eta: -1,
+        gender: null,
+        id: -1,
+        name: null,
+        open: false,
         position: {},
-        open: false
+        tag: null
       }
     }
   },
@@ -31,8 +36,17 @@ export default {
     markerClicked(m) {
       this.mapCenter = m.position
     },
-    openInfoWindowTemplate(item) {
-      this.infoWindow.position = item.position
+    openInfoWindowTemplate(who) {
+      Object.assign(this.$data, this.$options.data.apply(this))
+      this.infoWindow.id = who.id
+      this.infoWindow.position = who.position
+      if (who.tag) {
+        this.infoWindow.gender = who.gender
+        this.infoWindow.tag = who.tag
+      } else {
+        this.infoWindow.eta = who.eta
+        this.infoWindow.name = who.name
+      }
       this.infoWindow.open = true
     }
   }

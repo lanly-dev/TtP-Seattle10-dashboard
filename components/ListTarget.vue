@@ -1,6 +1,6 @@
 <template lang="pug">
   span
-    .row.text-left(v-for='target in targets')
+    .row.text-left(v-for='target in targets' @click='targetClick(target)')
       .col-3(:style='tagColor(target.tag)'): span {{target.id}}
       .col-9 {{ target.gender }}
 </template>
@@ -13,9 +13,18 @@ export default {
       if (color === 'yellow') textColor = 'black'
       return { backgroundColor: color, color: textColor }
     },
-    itemClick() {
-      console.log('clicked')
+    targetClick(target) {
+      this.$store.dispatch('PICK', target)
     }
   }
 }
 </script>
+<style>
+.row.text-left {
+  cursor: pointer;
+}
+
+.row.text-left:hover {
+  background-color: gray;
+}
+</style>

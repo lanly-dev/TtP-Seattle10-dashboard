@@ -5,7 +5,8 @@
     //- h2.subtitle dashboard
     .row.bg-light.border
       .col-1.sidebar1: list-t(:targets='targets')
-      .col-10.border.p-0: g-map(:mapCenter='mapCenter' :targets='targets' :emsTeams='emsTeams')
+      .col-10.border.p-0
+        g-map(:mapCenter='mapCenter' :targets='targets' :emsTeams='emsTeams')
       .col-1.sidebar2: list-e(:emsTeams='emsTeams')
     //- for testing REST API and Websocket
     //- button.btn.btn-primary(@click='press') Press

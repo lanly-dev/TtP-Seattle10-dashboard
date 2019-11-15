@@ -1,7 +1,7 @@
 <template lang="pug">
   gmap-map#map(:center='mapCenter' :zoom=7 map-type-id='terrain')
-    gmap-marker(:key='`a-${index}`' v-for='(m, index) in targets' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
-    gmap-marker(:key='`b-${index}`' v-for='(m, index) in emsTeams' :position='m.position' :clickable='true' @click='openInfoWindowTemplate(m)')
+    gmap-marker(:key='`a-${index}`' v-for='(m, index) in targets' :position='m.position' :clickable='true' @click='markerClicked(m)')
+    gmap-marker(:key='`b-${index}`' v-for='(m, index) in emsTeams' :position='m.position' :clickable='true' @click='markerClicked(m)')
     gmap-info-window(:options='{maxWidth: 300}' :position='infoWindow.position' :opened='infoWindow.open' @closeclick='infoWindow.open=false')
       div
         .row
@@ -29,15 +29,12 @@ export default {
     this.$store.watch(
       () => this.$store.getters.getMarkerPicked,
       (n) => {
-        this.openInfoWindowTemplate(n)
+        this.markerClicked(n)
       }
     )
   },
   methods: {
-    markerClicked(m) {
-      this.mapCenter = m.position
-    },
-    openInfoWindowTemplate(who) {
+    markerClicked(who) {
       Object.assign(this.$data, this.$options.data.apply(this))
       this.infoWindow.id = who.id
       this.infoWindow.position = who.position
@@ -49,6 +46,7 @@ export default {
         this.infoWindow.name = who.name
       }
       this.infoWindow.open = true
+      this.$store.dispatch('PICK', who)
     }
   }
 }

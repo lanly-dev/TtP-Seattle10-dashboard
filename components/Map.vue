@@ -1,7 +1,7 @@
 <template lang="pug">
   gmap-map#map(:center='mapCenter' :zoom=7 map-type-id='terrain')
-    gmap-marker(:key='`a-${index}`' v-for='(m, index) in targets' :position='m.position' :clickable='true' @click='markerClicked(m)')
-    gmap-marker(:key='`b-${index}`' v-for='(m, index) in emsTeams' :position='m.position' :clickable='true' @click='markerClicked(m)')
+    gmap-marker(:key='`a-${index}`' :icon='m.icon' v-for='(m, index) in targetsColor()' :position='m.position' :clickable='true' @click='markerClicked(m)')
+    gmap-marker(:key='`b-${index}`' :icon='m.icon' v-for='(m, index) in emsTeamsColor()' :position='m.position' :clickable='true' @click='markerClicked(m)')
     gmap-info-window(:options='{maxWidth: 300}' :position='infoWindow.position' :opened='infoWindow.open' @closeclick='infoWindow.open=false')
       div
         .row
@@ -47,6 +47,31 @@ export default {
       }
       this.infoWindow.open = true
       this.$store.dispatch('PICK', who)
+    },
+    emsTeamsColor() {
+      const temp = []
+      for (const t of this.emsTeams) {
+        t.icon = {
+          url: '/mblue.png'
+        }
+        temp.push(t)
+      }
+      return temp
+    },
+    targetsColor() {
+      const temp = []
+      for (const t of this.targets) {
+        let colorPath
+        if (t.tag === 'green') colorPath = '/mgreen.png'
+        else if (t.tag === 'yellow') colorPath = '/myellow.png'
+        else if (t.tag === 'red') colorPath = '/mred.png'
+        else if (t.tag === 'black') colorPath = '/mblack.png'
+        t.icon = {
+          url: colorPath
+        }
+        temp.push(t)
+      }
+      return temp
     }
   }
 }

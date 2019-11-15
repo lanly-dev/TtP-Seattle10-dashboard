@@ -1,7 +1,7 @@
 <template lang="pug">
   .container-fluid
-    h4 TtP-Seattle10-dashboard
-    //- h1.title TtP-Seattle10-dashboard
+    h4 ATOMIC: Assisted Triage Online for MCI Incident Commanders
+    //- h1.title ATOMIC: Assisted Triage Online for MCI Incident Commanders
     //- h2.subtitle dashboard
     .row.bg-light.border
       .col-1.sidebar1: list-t(:targets='targets')

@@ -37,7 +37,7 @@ export default {
         { id: 1, name: 'team1', position: { lat: 11, lng: 7 }, eta: 10 },
         { id: 2, name: 'team2', position: { lat: 11, lng: 8 }, eta: 20 },
         { id: 3, name: 'team3', position: { lat: 11, lng: 12 }, eta: 5 },
-        { id: 4, name: 'team4', position: { lat: 11, lng: 13 }, eta: 0 }
+        { id: 4, name: 'team4', position: { lat: 11, lng: 13 }, eta: 1 }
       ]
     }
   },

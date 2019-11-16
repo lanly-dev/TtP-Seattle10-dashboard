@@ -5,9 +5,10 @@
     gmap-info-window(:options='{maxWidth: 300}' :position='infoWindow.position' :opened='infoWindow.open' @closeclick='infoWindow.open=false')
       div
         .row
-          .col-2 {{infoWindow.id}}
+          .col-2(:style='tagColor(infoWindow.tag)') {{infoWindow.id}}
           .col-10(v-if='infoWindow.gender') {{infoWindow.gender}}
-          .col-10(v-if='infoWindow.name') {{infoWindow.name}}
+          .col-5(v-if='infoWindow.name') {{infoWindow.name}}
+          .col-5(v-if='infoWindow.eta') ETA-{{infoWindow.eta}}
 </template>
 <script>
 export default {
@@ -15,7 +16,7 @@ export default {
   data() {
     return {
       infoWindow: {
-        eta: -1,
+        eta: null,
         gender: null,
         id: -1,
         name: null,
@@ -72,6 +73,12 @@ export default {
         temp.push(t)
       }
       return temp
+    },
+    tagColor(color) {
+      let textColor = 'white'
+      if (color === 'yellow') textColor = 'black'
+      if (!color) color = 'blue'
+      return { backgroundColor: `${color} !important`, color: textColor }
     }
   }
 }
